@@ -1,0 +1,148 @@
+window.FILM_CATALOG = [
+  {
+    "id": "dragon",
+    "title": "王族弃子，屠龙问鼎",
+    "tag": "奇幻",
+    "clips": [
+      {
+        "number": 1,
+        "file": "assets/dragon-1.mp4",
+        "still": "assets/dragon-1.jpg",
+        "seconds": 119.7,
+        "bytes": 21820535,
+        "note": "从危机开场进入人物与世界设定。"
+      },
+      {
+        "number": 7,
+        "file": "assets/dragon-7.mp4",
+        "still": "assets/dragon-7.jpg",
+        "seconds": 82.05,
+        "bytes": 16817142,
+        "note": "推荐选看：力量释放，宴会上的冲突升级。"
+      }
+    ],
+    "summary": "龙族危机与王族冲突，连接宏大场面和人物对抗。",
+    "focus": "奇幻场景 · 群像反应 · 冲突升级",
+    "recommend": 7
+  },
+  {
+    "id": "revenge",
+    "title": "出狱后，清算一切",
+    "tag": "复仇",
+    "clips": [
+      {
+        "number": 11,
+        "file": "assets/revenge-11.mp4",
+        "still": "assets/revenge-11.jpg",
+        "seconds": 88.03,
+        "bytes": 16278016,
+        "note": "宴会重逢，旧日恩怨再度浮出水面。"
+      },
+      {
+        "number": 12,
+        "file": "assets/revenge-12.mp4",
+        "still": "assets/revenge-12.jpg",
+        "seconds": 97.32,
+        "bytes": 16076463,
+        "note": "推荐选看：宴会上的正面交锋。"
+      },
+      {
+        "number": 13,
+        "file": "assets/revenge-13.mp4",
+        "still": "assets/revenge-13.jpg",
+        "seconds": 89.07,
+        "bytes": 15389510,
+        "note": "清算继续，人物关系与立场逐渐明朗。"
+      }
+    ],
+    "summary": "宴会重逢，女主与旧日关系正面交锋，一场清算就此展开。",
+    "focus": "复仇冲突 · 对话攻防 · 反应镜头",
+    "recommend": 12
+  },
+  {
+    "id": "mafia",
+    "title": "黑手党的猫咪情人",
+    "tag": "情感",
+    "clips": [
+      {
+        "number": 1,
+        "file": "assets/mafia-1.mp4",
+        "still": "assets/mafia-1.jpg",
+        "seconds": 128.57,
+        "bytes": 20843498,
+        "note": "开场呈现奇幻设定与身份秘密。"
+      },
+      {
+        "number": 22,
+        "file": "assets/mafia-22.mp4",
+        "still": "assets/mafia-22.jpg",
+        "seconds": 143.01,
+        "bytes": 20971172,
+        "note": "推荐选看：猫的秘密与意外的发现。"
+      },
+      {
+        "number": 23,
+        "file": "assets/mafia-23.mp4",
+        "still": "assets/mafia-23.jpg",
+        "seconds": 120.12,
+        "bytes": 17874188,
+        "note": "浴室里的亲密时刻与身份秘密。"
+      }
+    ],
+    "summary": "猫与人形态交替，让身份秘密进入亲密关系。",
+    "focus": "身份秘密 · 人猫互动 · 关系变化",
+    "recommend": 22
+  },
+  {
+    "id": "bride",
+    "title": "龙王的替身新娘一心复仇",
+    "tag": "奇幻",
+    "clips": [
+      {
+        "number": 3,
+        "file": "assets/bride-3.mp4",
+        "still": "assets/bride-3.jpg",
+        "seconds": 150.51,
+        "bytes": 21274536,
+        "note": "暗藏锋芒的对峙，与逐渐显露的龙族身份。"
+      },
+      {
+        "number": 7,
+        "file": "assets/bride-7.mp4",
+        "still": "assets/bride-7.jpg",
+        "seconds": 103.49,
+        "bytes": 16700017,
+        "note": "推荐选看：车旁的危机，与关系的转折。"
+      }
+    ],
+    "summary": "龙族身份、复仇动机与男女主关系交织。",
+    "focus": "人物特写 · 奇幻细节 · 动作场景",
+    "recommend": 7
+  },
+  {
+    "id": "wolf",
+    "title": "闪婚嫁到Alpha狼人",
+    "tag": "情感",
+    "clips": [
+      {
+        "number": 2,
+        "file": "assets/wolf-2.mp4",
+        "still": "assets/wolf-2.jpg",
+        "seconds": 134.5,
+        "bytes": 21491241,
+        "note": "庄园外的家庭冲突与人物情绪。"
+      },
+      {
+        "number": 10,
+        "file": "assets/wolf-10.mp4",
+        "still": "assets/wolf-10.jpg",
+        "seconds": 64.81,
+        "bytes": 12860091,
+        "note": "推荐选看：庄园里的双人关系与意外来客。"
+      }
+    ],
+    "summary": "家庭冲突与亲密关系，呈现不同强度的人物情绪。",
+    "focus": "情绪表达 · 双人关系 · 场景切换",
+    "recommend": 10
+  }
+];
