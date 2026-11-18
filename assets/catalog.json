@@ -144,5 +144,50 @@
     "summary": "家庭冲突与亲密关系，呈现不同强度的人物情绪。",
     "focus": "情绪表达 · 双人关系 · 场景切换",
     "recommend": 10
+  },
+  {
+    "id": "qingmei",
+    "title": "青梅",
+    "tag": "短片",
+    "clips": [
+      {
+        "number": 1,
+        "label": "短片",
+        "file": "assets/qingmei-1.mp4",
+        "still": "assets/qingmei-poster.jpg",
+        "seconds": 43.65,
+        "bytes": 11860545
+      }
+    ]
+  },
+  {
+    "id": "xinsheng",
+    "title": "心声",
+    "tag": "短片",
+    "clips": [
+      {
+        "number": 1,
+        "label": "短片",
+        "file": "assets/xinsheng-1.mp4",
+        "still": "assets/xinsheng-poster.jpg",
+        "seconds": 53.8,
+        "bytes": 17158670
+      }
+    ]
+  },
+  {
+    "id": "zhumen",
+    "title": "朱门",
+    "tag": "短片",
+    "clips": [
+      {
+        "number": 1,
+        "label": "短片",
+        "file": "assets/zhumen-1.mp4",
+        "still": "assets/zhumen-poster.jpg",
+        "seconds": 22.22,
+        "bytes": 7503768
+      }
+    ]
   }
 ]

@@ -3,6 +3,7 @@
   const projects = window.FILM_CATALOG;
   const $ = id => document.getElementById(id);
   const formatTime = seconds => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+  const clipLabel = (clip, padded = false) => clip.label ?? `第 ${padded ? String(clip.number).padStart(2, '0') : clip.number} 集`;
   let featuredIndex = 0;
   let currentProject = null;
   let currentClipIndex = 0;
@@ -10,6 +11,7 @@
   const dialog = $('player-dialog');
   const video = $('video-player');
   if (!Array.isArray(projects) || !projects.length) return;
+  const featuredProjects = projects.slice(0, 5);
 
   function renderWorks(filter = '全部') {
     $('project-grid').replaceChildren();
@@ -17,7 +19,10 @@
       if (filter !== '全部' && project.tag !== filter) return;
       const article = document.createElement('article');
       article.className = 'project-card';
-      article.innerHTML = `<button class="poster-button" aria-label="观看《${project.title}》"><img src="assets/${project.id}-poster.jpg" alt="${project.title}海报" loading="lazy"><span class="poster-index">${String(index + 1).padStart(2, '0')} / FILM</span><span class="poster-watch">观看作品<span class="play-circle"><span class="play-icon"></span></span></span></button><div class="project-meta"><span class="tag">${project.tag} / AIGC</span><span>${String(project.clips.length).padStart(2, '0')} 集选映</span></div><h3><button>${project.title}</button></h3><p class="project-subtitle">精选第 ${project.clips.map(clip => clip.number).join('、')} 集</p>`;
+      const shortFilm = project.clips[0].label;
+      const count = shortFilm ? '01 部选映' : `${String(project.clips.length).padStart(2, '0')} 集选映`;
+      const subtitle = shortFilm ? '中文成片' : `精选第 ${project.clips.map(clip => clip.number).join('、')} 集`;
+      article.innerHTML = `<button class="poster-button" aria-label="观看《${project.title}》"><img src="assets/${project.id}-poster.jpg" alt="${project.title}海报" loading="lazy"><span class="poster-index">${String(index + 1).padStart(2, '0')} / FILM</span><span class="poster-watch">观看作品<span class="play-circle"><span class="play-icon"></span></span></span></button><div class="project-meta"><span class="tag">${project.tag} / AIGC</span><span>${count}</span></div><h3><button>${project.title}</button></h3><p class="project-subtitle">${subtitle}</p>`;
       article.querySelectorAll('button').forEach(button => button.addEventListener('click', () => openPlayer(project, 0)));
       $('project-grid').append(article);
     });
@@ -31,21 +36,22 @@
     });
     $('episode-title').textContent = project.title;
     $('episode-tag').textContent = `${project.tag} / AIGC SHORT DRAMA`;
-    $('selection-count').textContent = `${project.clips.length} 集精选`;
+    $('selection-count').textContent = project.clips[0].label ? '1 部短片' : `${project.clips.length} 集精选`;
     $('clip-grid').replaceChildren();
     project.clips.forEach((clip, index) => {
       const button = document.createElement('button');
       button.className = 'clip-card';
-      button.setAttribute('aria-label', `观看《${project.title}》第 ${clip.number} 集`);
-      button.innerHTML = `<div class="clip-image"><img src="${clip.still}" alt="${project.title}第${clip.number}集剧照" loading="lazy"><span class="play-icon"></span><span class="clip-duration">${formatTime(clip.seconds)}</span></div><strong>第 ${String(clip.number).padStart(2, '0')} 集</strong><small>中文成片 · ${formatTime(clip.seconds)}</small>`;
+      button.setAttribute('aria-label', `观看《${project.title}》${clipLabel(clip)}`);
+      const stillAlt = clip.label ? `${project.title}剧照` : `${project.title}第${clip.number}集剧照`;
+      button.innerHTML = `<div class="clip-image"><img src="${clip.still}" alt="${stillAlt}" loading="lazy"><span class="play-icon"></span><span class="clip-duration">${formatTime(clip.seconds)}</span></div><strong>${clipLabel(clip, true)}</strong><small>中文成片 · ${formatTime(clip.seconds)}</small>`;
       button.addEventListener('click', () => openPlayer(project, index));
       $('clip-grid').append(button);
     });
   }
 
   function setFeatured(index) {
-    featuredIndex = (index + projects.length) % projects.length;
-    const project = projects[featuredIndex];
+    featuredIndex = (index + featuredProjects.length) % featuredProjects.length;
+    const project = featuredProjects[featuredIndex];
     const image = $('hero-image');
     image.src = project.id === 'wolf' ? `assets/${project.id}-poster.jpg` : `assets/${project.id}-wide.jpg`;
     image.alt = `${project.title}作品海报`;
@@ -64,11 +70,12 @@
     $('player-error').hidden = true;
     $('player-title').textContent = currentProject.title;
     $('player-tag').textContent = `${currentProject.tag} / AI SHORT DRAMA`;
-    $('player-episode-label').textContent = `第 ${clip.number} 集 · ${formatTime(clip.seconds)} · 中文成片`;
+    $('player-episode-label').textContent = `${clipLabel(clip)} · ${formatTime(clip.seconds)} · 中文成片`;
+    $('player-note').hidden = Boolean(clip.label);
     $('player-episodes').replaceChildren();
     currentProject.clips.forEach((item, itemIndex) => {
       const button = document.createElement('button');
-      button.textContent = `第 ${item.number} 集`;
+      button.textContent = clipLabel(item);
       button.setAttribute('aria-pressed', String(itemIndex === index));
       button.addEventListener('click', () => updateClip(itemIndex));
       $('player-episodes').append(button);
@@ -122,7 +129,7 @@
     button.addEventListener('click', () => selectEpisodeProject(project));
     $('episode-projects').append(button);
   });
-  $('hero-play').addEventListener('click', () => openPlayer(projects[featuredIndex], 0));
+  $('hero-play').addEventListener('click', () => openPlayer(featuredProjects[featuredIndex], 0));
   $('hero-prev').addEventListener('click', () => setFeatured(featuredIndex - 1));
   $('hero-next').addEventListener('click', () => setFeatured(featuredIndex + 1));
   $('close-player').addEventListener('click', () => dialog.close());
